@@ -36,25 +36,25 @@ func (s *{%s= str.StructName %}) ParseCSV(rec []string) error {
         {% case "int32" %}
         {%s= strings.ToLower(f.Name) %}, err := strconv.ParseInt(rec[{%d= f.Position %}], 0, 32)
         if err != nil {
-            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d", {%d= f.Position %})
+            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d. Structure: %#v\n", {%d= f.Position %}, rec)
         }
         s.{%s= f.Name %} = int32({%s= strings.ToLower(f.Name) %})
         {% case "int64" %}
         {%s= strings.ToLower(f.Name) %}, err := strconv.ParseInt(rec[{%d= f.Position %}], 0, 64)
         if err != nil {
-            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d", {%d= f.Position %})
+            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d. Structure: %#v\n", {%d= f.Position %}, rec)
         }
         s.{%s= f.Name %} = {%s= strings.ToLower(f.Name) %}
         {% case "float32" %}
         {%s= strings.ToLower(f.Name) %}, err := strconv.ParseFloat(rec[{%d= f.Position %}], 32)
         if err != nil {
-            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d", {%d= f.Position %})
+            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d. Structure: %#v\n", {%d= f.Position %}, rec)
         }
         s.{%s= f.Name %} = float32({%s= strings.ToLower(f.Name) %})
         {% case "float64" %}
         {%s= strings.ToLower(f.Name) %}, err := strconv.ParseFloat(rec[{%d= f.Position %}], 64)
         if err != nil {
-            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d", {%d= f.Position %})
+            return fmt.Errorf("error while parsing {%s= f.Name %} at index: %d. Structure: %#v\n", {%d= f.Position %}, rec)
         }
         s.{%s= f.Name %} = {%s= strings.ToLower(f.Name) %}
         {% endswitch %}

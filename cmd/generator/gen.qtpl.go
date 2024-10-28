@@ -146,11 +146,11 @@ func (s *`)
 //line gen.qtpl:39
 				qw422016.N().S(f.Name)
 //line gen.qtpl:39
-				qw422016.N().S(` at index: %d", `)
+				qw422016.N().S(` at index: %d. Structure: %#v\n", `)
 //line gen.qtpl:39
 				qw422016.N().D(f.Position)
 //line gen.qtpl:39
-				qw422016.N().S(`)
+				qw422016.N().S(`, rec)
         }
         s.`)
 //line gen.qtpl:41
@@ -180,11 +180,11 @@ func (s *`)
 //line gen.qtpl:45
 				qw422016.N().S(f.Name)
 //line gen.qtpl:45
-				qw422016.N().S(` at index: %d", `)
+				qw422016.N().S(` at index: %d. Structure: %#v\n", `)
 //line gen.qtpl:45
 				qw422016.N().D(f.Position)
 //line gen.qtpl:45
-				qw422016.N().S(`)
+				qw422016.N().S(`, rec)
         }
         s.`)
 //line gen.qtpl:47
@@ -214,11 +214,11 @@ func (s *`)
 //line gen.qtpl:51
 				qw422016.N().S(f.Name)
 //line gen.qtpl:51
-				qw422016.N().S(` at index: %d", `)
+				qw422016.N().S(` at index: %d. Structure: %#v\n", `)
 //line gen.qtpl:51
 				qw422016.N().D(f.Position)
 //line gen.qtpl:51
-				qw422016.N().S(`)
+				qw422016.N().S(`, rec)
         }
         s.`)
 //line gen.qtpl:53
@@ -248,11 +248,11 @@ func (s *`)
 //line gen.qtpl:57
 				qw422016.N().S(f.Name)
 //line gen.qtpl:57
-				qw422016.N().S(` at index: %d", `)
+				qw422016.N().S(` at index: %d. Structure: %#v\n", `)
 //line gen.qtpl:57
 				qw422016.N().D(f.Position)
 //line gen.qtpl:57
-				qw422016.N().S(`)
+				qw422016.N().S(`, rec)
         }
         s.`)
 //line gen.qtpl:59
