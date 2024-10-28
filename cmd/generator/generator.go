@@ -45,6 +45,9 @@ func makeStructs(structs map[string][]structField) ([]Struct, error) {
 			if fd.Tag != "" {
 				// Check if there's a tag with position.
 				posStr := strings.Trim(strings.ReplaceAll(fd.Tag, "csv:", ""), `"`)
+				if posStr == "-" {
+					continue
+				}
 				tagPos, err := strconv.Atoi(posStr)
 				if err != nil {
 					return nil, fmt.Errorf("invalid struct tag: %v", fd.Tag)

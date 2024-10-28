@@ -59,7 +59,7 @@ func TestParseCSVWithTag(t *testing.T) {
 			t.Fatalf("error reading csv: %v", err)
 		}
 
-		str := testCsvWithTags{}
+		str := testCsvWithTags{Foobar: "foobar"}
 		if err := str.ParseCSV(rec); err != nil {
 			t.Fatalf("error parsing csv record: %v", err)
 		}
@@ -68,6 +68,7 @@ func TestParseCSVWithTag(t *testing.T) {
 			TestStr:     "TestString",
 			TestInt64:   12345,
 			TestFloat32: 1.05,
+			Foobar:      "foobar",
 		}
 
 		if !reflect.DeepEqual(str, expectedStr) {
