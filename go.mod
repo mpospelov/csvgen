@@ -1,4 +1,4 @@
-module github.com/iamd3vil/csvgen
+module github.com/mpospelov/csvgen
 
 go 1.16
 
