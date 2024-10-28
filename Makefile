@@ -9,7 +9,7 @@ VERSION := ${HASH} (${COMMIT_DATE})
 
 STATIC := ./templates:/templates
 
-build:
+build: generate
 	go build -o ${BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'" ./cmd/generator/
 
 run:
@@ -17,7 +17,10 @@ run:
 
 fresh: clean build
 
-test: build
+generate:
+	go generate ./cmd/generator
+
+test: build generate
 	rm -rf ./test/csvgen_gen.go
 	cd test && ../csvgen.bin -file models.go -dest csvgen.go && cd ../
 	go test -v ./test

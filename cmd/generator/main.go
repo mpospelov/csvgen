@@ -14,6 +14,8 @@ var (
 	buildDate, buildVersion string
 )
 
+//go:generate qtc -dir=.
+
 func main() {
 	pkg := flag.String("pkg", "main", "Package for the generated file")
 	fName := flag.String("file", "", "File with structs")

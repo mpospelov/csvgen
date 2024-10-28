@@ -76,3 +76,36 @@ func TestParseCSVWithTag(t *testing.T) {
 		}
 	}
 }
+
+func TestParseCSVWithOmitemptyTag(t *testing.T) {
+	f, err := os.Open("test_omitempty.csv")
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	rdr := csv.NewReader(f)
+	for {
+		rec, err := rdr.Read()
+		if err != nil {
+			if err == io.EOF {
+				break
+			}
+			t.Fatalf("error reading csv: %v", err)
+		}
+
+		str := testCsvWithOmitEmptyTags{}
+		if err := str.ParseCSV(rec); err != nil {
+			t.Fatalf("error parsing csv record: %v", err)
+		}
+
+		expectedStr := testCsvWithOmitEmptyTags{
+			TestStr:     "TestString",
+			TestInt64:   0,
+			TestFloat32: 1.05,
+		}
+
+		if !reflect.DeepEqual(str, expectedStr) {
+			t.Fatalf("expected: %#v, got: %#v", str, expectedStr)
+		}
+	}
+}

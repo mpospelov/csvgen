@@ -15,9 +15,10 @@ type Struct struct {
 }
 
 type Field struct {
-	Name     string
-	Type     string
-	Position int
+	Name      string
+	Type      string
+	Position  int
+	Omitempty bool
 }
 
 func generateCode(dest io.Writer, pkg string, structs map[string][]structField) error {
@@ -44,7 +45,9 @@ func makeStructs(structs map[string][]structField) ([]Struct, error) {
 		for _, fd := range fields {
 			if fd.Tag != "" {
 				// Check if there's a tag with position.
-				posStr := strings.Trim(strings.ReplaceAll(fd.Tag, "csv:", ""), `"`)
+				tagValue := strings.Trim(strings.ReplaceAll(fd.Tag, "csv:", ""), `"`)
+				tagValues := strings.Split(tagValue, ",")
+				posStr := tagValues[0]
 				if posStr == "-" {
 					continue
 				}
@@ -59,9 +62,10 @@ func makeStructs(structs map[string][]structField) ([]Struct, error) {
 			}
 
 			f := Field{
-				Name:     fd.Name,
-				Type:     fd.Type,
-				Position: pos,
+				Name:      fd.Name,
+				Type:      fd.Type,
+				Position:  pos,
+				Omitempty: strings.Contains(fd.Tag, "omitempty"),
 			}
 			st.Fields = append(st.Fields, f)
 			pos++

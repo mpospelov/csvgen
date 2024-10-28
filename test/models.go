@@ -14,3 +14,9 @@ type testCsvWithTags struct {
 	TestFloat32 float32
 	Foobar      string `csv:"-"`
 }
+
+type testCsvWithOmitEmptyTags struct {
+	TestStr     string
+	TestInt64   int32 `csv:"2,omitempty"`
+	TestFloat32 float32
+}

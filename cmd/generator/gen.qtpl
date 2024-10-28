@@ -2,7 +2,7 @@
 
 {% import "strings" %}
 
-{% code 
+{% code
 type Context struct {
     Pkg string
     Structs []Struct
@@ -27,6 +27,9 @@ import (
 {% for _, str := range ctx.Structs %}
 func (s *{%s= str.StructName %}) ParseCSV(rec []string) error {
     {% for _, f := range str.Fields %}
+        {% if f.Omitempty %}
+        if rec[{%d= f.Position %}] != "" {
+        {% endif %}
         {% switch f.Type %}
         {% case "string" %}
         s.{%s= f.Name %} = rec[{%d= f.Position %}]
@@ -55,6 +58,10 @@ func (s *{%s= str.StructName %}) ParseCSV(rec []string) error {
         }
         s.{%s= f.Name %} = {%s= strings.ToLower(f.Name) %}
         {% endswitch %}
+        {% if f.Omitempty %}
+        }
+        {% endif %}
+
     {% endfor %}
     return nil
 }
